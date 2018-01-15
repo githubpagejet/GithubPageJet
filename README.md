@@ -24,7 +24,7 @@ Also:
       - [Configuration](#configuration)
       - [File permissions](#file-permissions)  
       - [Web service](#web-service)
-	- [Nginx](#nginx)	
+        - [Nginx](#nginx)	
       - [Task runners and package managers](#task-runners-and-package-managers)
     - [Development](#development)
   - [Use with your own server](#use-with-your-own-server)  
