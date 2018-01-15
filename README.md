@@ -18,14 +18,10 @@ Also:
 - [Installation](#installation)
   - [Use with Github Pages](#use-with-github-pages)
     - [First step](#first-step)
-  - [Services](#services)
-  - [Configuration](#configuration)
-    - [Back-end application](#back-end-application)
-		- [Framework](#framework)
-		- [Third-party services](#third-party-services)
-		- [Cache](#cache)
-		- [Database](#database)
-	- [Front-end application](#front-end-application)
+    - [Build a development environment](#build-a-development-environment)
+      - [Checkout](#checkout)
+      - [Install services](#install-services)
+      - [Configuration](#configuration)
   - [Gitignore](#gitignore)
   - [File permissions](#file-permissions)
   - [Web service](#web-service)
@@ -80,7 +76,7 @@ If you want to use the full capacity of the application you will have to install
 
 This will allow you to use - Handlebars template engine and to minify the CSS and JavaScript file. Skip this chapter if you don't need these option and go to ...
 
-### Checkout
+#### Checkout
 Checkout the project on your machine:
 ```
 git clone https://github.com/githubpagejet/GithubPageJet
@@ -92,7 +88,7 @@ Go to the directory of the project:
 cd example
 ```
 
-### Install services
+#### Install services
 Install the following services:
 - **npm**, follow the instructions from here: [https://github.com/npm/npm](https://github.com/npm/npm)
 - **grunt**, follow the instructions from here: [http://gruntjs.com/getting-started](http://gruntjs.com/getting-started)
@@ -108,7 +104,7 @@ Sometimes during the installation of grunt and the npm tasks it is possible to e
 rm -R node_modules/
 ```
 
-### Configuration
+#### Configuration
 Go to /js/config.js and set up the following:
 ```js
 ...
@@ -127,13 +123,12 @@ Example:
 ```
 Save and close.
 
-### Gitignore
 When we finish with your configurations, you can add the config files to .gitignore which will protect them to be rewritten. Add this to .gitignore:
 ```js
 	/js/config.js
 ```
 
-### File permissions
+#### File permissions
 Execute the following:
 ```
 chmod -R 0755 example/
@@ -141,10 +136,10 @@ chown -R www-data example/
 chgrp -R www-data example/
 ```
 
-### Web service
+#### Web service
 For the development of our application, we will need to configure a domain name which points to our server *(make sure this is already done before you continue)* and also to configure the web aplication which will make a relation between our domain name and our directory where we keep the files of our application.
 
-#### Nginx
+##### Nginx
 Use the configurations from files:
 ```
 nginx-80.conf
@@ -156,7 +151,7 @@ nginx -t
 service nginx reload
 ```
 
-### Task runners and package managers
+#### Task runners and package managers
 Grunt and all npm tasks which we’ve already installed, have the following purpose.
 
 ```
