@@ -21,11 +21,11 @@ Also:
     - [Build a development environment](#build-a-development-environment)
       - [Checkout](#checkout)
       - [Install services](#install-services)
+      - [Task runners and package managers](#task-runners-and-package-managers)
       - [Configuration](#configuration)
       - [File permissions](#file-permissions)  
       - [Web service](#web-service)
-        - [Nginx](#nginx)	
-      - [Task runners and package managers](#task-runners-and-package-managers)
+        - [Nginx](#nginx)	      
     - [Development](#development)
   - [Use with your own server](#use-with-your-own-server)  
 - [Structure of the application](#structure-of-the-application)
@@ -47,6 +47,7 @@ The following technologies and libraries have been used:
 	- Handlebarsjs
 
 **Server-side services:**
+
 If you plan to use Handlebars and the minification option for CSS and JS, you might be interested in the services below:
 - npm
 - grunt
@@ -65,7 +66,9 @@ Go to https://pages.github.com and follow the instructions describing how to cre
 ### Build a development environment
 If you want to use the full capacity of the application you will have to install a development environment on your own machine.
 
-This will allow you to use - Handlebars template engine and to minify the CSS and JavaScript file. Skip this chapter if you don't need these option and go to ...
+This will allow you to use - Grunt, Handlebars template engine and the option to minify the CSS and JavaScript file. It is also advisable to use this approach because you can develop your website on your own machine and deploy it once it is ready. Doing this directly on Github Pages will be difficult because Github Pages has its own cache system and each small change in the code will take time to be deployed. This will slow down the development process.
+
+If you don't want to use grunt, handlebars and all additiional feature, skil the chapters "Checkout" and "Install services".
 
 #### Checkout
 Checkout the project on your machine:
@@ -94,6 +97,39 @@ Sometimes during the installation of grunt and the npm tasks it is possible to e
 ```
 rm -R node_modules/
 ```
+
+#### Task runners and package managers
+Grunt and all npm tasks which we’ve already installed, have the following purpose.
+
+```
+grunt less
+```
+Compiles the LESS file */css/style.less* and converts it to the CSS file */css/style.css*.
+
+```
+grunt sass
+```
+Compiles the SASS file */css/style.scss* and converts it to a the CSS file */css/style.css*.
+
+```
+grunt uglify
+```
+Takes all javascript files, minimize them and unites them in one single file named */js/lib.min.js*.
+
+```
+grunt handlebars
+```
+Takes all handlebar templates located in *"/templates"* and pre-compiles them. The pre-compiled templates are saved in */js/templates.js*.
+
+```
+grunt
+```
+Executes all npm tasks listed above.
+
+```
+grunt watch
+```
+If you run this task in the terminal, grunt will start a script which will watch for changes in all directories and files which are related to all above tasks. If there are changes, the script will automatically run the default grunt task which on other hand will run all other tasks. As a consequence, all LESS/SASS files will be regenerated, all js files will be minified, all handlebars templates will be pre-complited, etc.
 
 #### Configuration
 Go to /js/config.js and set up the following:
@@ -142,43 +178,10 @@ nginx -t
 service nginx reload
 ```
 
-#### Task runners and package managers
-Grunt and all npm tasks which we’ve already installed, have the following purpose.
-
-```
-grunt less
-```
-Compiles the LESS file */css/style.less* and converts it to the CSS file */css/style.css*.
-
-```
-grunt sass
-```
-Compiles the SASS file */css/style.scss* and converts it to a the CSS file */css/style.css*.
-
-```
-grunt uglify
-```
-Takes all javascript files, minimize them and unites them in one single file named */js/lib.min.js*.
-
-```
-grunt handlebars
-```
-Takes all handlebar templates located in *"/templates"* and pre-compiles them. The pre-compiled templates are saved in */js/templates.js*.
-
-```
-grunt
-```
-Executes all npm tasks listed above.
-
-```
-grunt watch
-```
-If you run this task in the terminal, grunt will start a script which will watch for changes in all directories and files which are related to all above tasks. If there are changes, the script will automatically run the default grunt task which on other hand will run all other tasks. As a consequence, all LESS/SASS files will be regenerated, all js files will be minified, all handlebars templates will be pre-complited, etc.
-
 ### Development
 If we follow the steps above, we will have a working environment which can be accessed with our web browser and domain name which is configured for the purposes.
 
-Once we are ready with the development, we have to generate Handlebars JS templates and to minify the CSS and JavaScript files:
+Once we are ready with the development, we have to generate Handlebars JS templates and to minify the CSS and JavaScript files *(this is only if we use these services)*:
 
 ```
 grunt
